@@ -18,6 +18,7 @@
 		else
 			$action = Route::route_of($_GET['route'], $_SERVER['REQUEST_METHOD']);
 		// Initiate controller pbject
+		var_dump($action);
 		$controller = new $action['controller'];
 		
 		// Check for filter

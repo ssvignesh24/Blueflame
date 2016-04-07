@@ -55,6 +55,7 @@
 					$filter = explode(":", $frags[1]);
 					$r["action"] = $filter[0];
 					$r['filter'] = isset($filter[1]);
+
 					if($val){
 						if($val->validate($method))
 							$r['data'] = $val->getData();

@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os.ttf);
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-bold.ttf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-sbold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-ebold.ttf);
+    font-weight: 900;
+}
+*{box-sizing : border-box;}
+body{margin: 0px;font-family: 'open-sans',arial, sans-serif;}
+.splash_content{position: relative;margin: auto;top:20%;width: 450px;max-height: 400px;transition : top 0.5s;padding-bottom: 50px}
+.splash_content .info{color: #000;text-align: center;font-size: 15pt;line-height: 32px;font-weight: 600}
+.splash_content .info .redit{color: #d43e3e}
+.splash_content .logo{background-image: url(/assets/images/logo.png);background-size: 90%;background-repeat: no-repeat;width: 200px;height: 100px;margin: auto;background-position: center;}
+.splash_content .subscribe_outer{width: 100%;height: 50px;border-bottom: 1px solid #777;position: relative;margin-top: 25px;transition : border-color 0.5s;}
+.splash_content .subscribe_outer .display{width: 100%;height: 100%;position: absolute;top:0px;left: 0px;text-align: center;color: #333;display: none;}
+.splash_content .subscribe_outer .display span{position: relative;top:10px;font-size: 15pt;}
+.splash_content .subscribe_outer .queue span, .splash_content .subscribe_outer .error span{top:13px;font-size: 12pt;}
+.splash_content .subscribe_outer input[type='text']{width: 400px;height: 100%;position: absolute;left: 0px;top:0px;border: 0px;padding: 5px;padding-left: 10px;font-size: 16pt;}
+.splash_content .subscribe_outer input[type='text']:focus,.splash_content .subscribe_outer button:focus{outline: none;}
+.splash_content .subscribe_outer button{width: 50px;height: 50px;border: 0px;background-color: rgba(0,0,0,0);position: absolute;right: 0px;top:0px;opacity: 0.25;transition: opacity 0.5s;}
+.splash_content .subscribe_outer button img{width: 70%;height: 70%;}
+
+
+@media screen and (max-width: 480px){
+	.splash_content{width: 100%;padding: 2%;top:100px;}
+	.splash_content .subscribe_outer input[type='text']{width: 85%}
+
+
+}
