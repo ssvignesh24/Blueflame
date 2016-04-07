@@ -3,6 +3,8 @@
 		<title> Rog | Handmade shop </title>
 		<script type="text/javascript" src="/assets/script/jq.js"></script>
 		<link rel="stylesheet" type="text/css" href="/assets/style/splash.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/png" href="assets/icons/favicon.png">
 	</head>
 	<body>
 		<div class="splash_content">
