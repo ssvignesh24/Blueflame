@@ -30,11 +30,3 @@ $('#subscribe').click(function(){
   if($(this).attr("data-send") == "true")
     send_request();
 });
-
-$(document).ready(function(){
-  r = new Image();
-  r.src = "/assets/images/getting_ready.jpg";
-  r.onload = function(){
-    $("body").css("background-image","url(/assets/images/getting_ready.jpg)");
-  }
-});
