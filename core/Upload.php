@@ -8,7 +8,9 @@
 				$imageFileType = pathinfo($orgi_file_name,PATHINFO_EXTENSION);
 				if($name_generate && is_callable($name_generate))
 					$file_name = $name_generate($orgi_file_name).".".$imageFileType;
-
+				elseif($name_generate)
+					$file_name = $name_generate.".".$imageFileType;
+				
 				$check_image = getimagesize($_FILES[$name]["tmp_name"]);
 				$uploadOk = false;
 			    if($check_image !== false) {

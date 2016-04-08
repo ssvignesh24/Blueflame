@@ -1,5 +1,6 @@
 <?php
-
+	
+	include 'core/session_management.php';
 	include 'config/db_config.php';
 	include 'core/Upload.php';
 	include 'core/Session.php';

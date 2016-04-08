@@ -2,9 +2,8 @@
 	
 	date_default_timezone_set("Asia/Kolkata");
 
-	session_start();
-
 	include 'core/load.php';
+	
 	$session = new Session();
 	if(explode("/", $_GET['route'])[0] == "admin"){
 		include 'core/auth.php';
@@ -23,7 +22,7 @@
 		// Check for filter
 		if($action['filter'] == true){
 			if(!$controller->__filter_request())
-				die("Request did not pass filter");
+				$controller->filter_failed();
 		}
 
 		// Check for input errors

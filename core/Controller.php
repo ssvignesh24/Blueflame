@@ -6,6 +6,11 @@
     public function __filter_request(){
       return true;
     }
+
+    public function filter_failed(){
+      die("Request did not pass filter");
+    }
+    
     public function getErrors(){
       return $this->errors;
     }
