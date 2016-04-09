@@ -19,7 +19,20 @@
 			"b_acc" => "minlength:10",
 			"b_branch" => "required"
 		)));
+	Route::post("product","Shop=>create_product",Validation::test(array(
+			"title" => "required",
+			"type" => "in:1,2",
+			"sub_type" => "in:1,2,3,4,5,6",
+			"category" => "required",
+			"gender" => "in:male,female,both",
+			"custom_packing" => "boolean",
+			"overview" => "required",
+			"description" => "required",
+			"tags" => "required",
+			"days" => "int",
+			"price" => "int"
 
+		)));
 	Route::get("product","Shop=>new_product:filter");
 
 
