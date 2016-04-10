@@ -1,0 +1,25 @@
+.banner_outer{width: 100%;height: 450px;background-color: red;position: relative;}
+.banner_outer .banner{position: absolute;left:0px;top:0px;width: 100%;height: 100%;background-size: cover;background-repeat: no-repeat;}
+.banner_outer .overlay{position: absolute;left: 0px;top:0px;width: 100%;height: 100%;background-color: rgba(0,0,0,0.25)}
+.shop_details{width: 600px;height: 250px;margin: auto;position: relative;top:150px;padding: 5px;}
+.shop_details .owner{width: 150px;height: 150px;margin: auto;background-color: blue;border:5px solid #FFF;box-shadow: 0px 0px 4px rgba(0,0,0,0.6);border-radius: 5px;background-size: contain;background-repeat: no-repeat;}
+.shop_details .shop_name{color: #FFF;text-shadow:0px 0px 3px rgba(0,0,0,0.5);font-size: 20pt;font-weight: 600;text-align: center;margin:0;margin-top:10px;}
+.shop_details .shop_location,.shop_details .shop_info{margin-top: 5px;font-size: 12pt;color: #FFF;text-shadow:0px 0px 3px rgba(0,0,0,0.5);text-align: center;font-weight: 400}
+.shop_details .shop_info{font-size: 14pt;font-weight: 600;margin-top: 20px}
+.category_outer{width: 100%;text-align: center;margin-top: 50px;margin-bottom: 20px}
+.category_outer li{display: inline-block;padding: 10px;color: #333;text-align: center;min-width: 120px;height: 50px;font-size: 13pt;border: 1px solid rgba(0,0,0,0);transition : border-color 0.3s;margin: auto 10px 10px}
+.category_outer li:hover{cursor: pointer;border-color : #999;}
+.category_outer li.active{border:1px solid #000;}
+.product_listing{width: 100%;min-height: 100px;}
+.product_listing .product{display: inline-block;width: 230px;min-height: 310px;margin: auto 15px 45px;vertical-align: top;}
+.product_listing .product .product_image{width: 230px;height: 230px;background-color: green;position: relative;}
+.product_listing .product .product_image .add_cart_outer{width: 100%;height: 60px;background-color: rgba(0,0,0,0.5);position: absolute;left: 0px;bottom: 0px;transition : opacity 0.4s;opacity: 0}
+.product_listing .product .product_image .add_cart_outer .add_cart{width: 60%;height: 35px;position: relative;top:12px;background-color: #66d622;text-align: center;color: #FFF;border:0;left:20%;font-size: 11pt;font-weight: 400;transition : background-color 0.4s}
+.product_listing .product .product_image .add_cart_outer .add_cart:hover{cursor: pointer;background-color: #6dc438}
+.product_listing .product:hover .add_cart_outer{opacity: 1;}
+.product_listing .product .product_info{width: 230px;min-height: 80px;padding: 5px 0px;}
+.product_listing .product .product_info .product_name{color: #333;font-weight: 600;font-size: 12pt;}
+.product_listing .product .product_info .product_extra{width: 100%;font-size: 11pt;margin-top: 5px}
+.product_listing .product .product_info .product_extra .product_price{float: left;}
+.product_listing .product .product_info .product_extra .product_rating{float: right;}
+.product_listing .product .product_info .product_extra .product_rating .fa-star{color: #f3e040}

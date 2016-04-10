@@ -21,6 +21,8 @@
 		)));
 
 	Route::get("product","Shop=>new_product:filter");
+	Route::get(":shop","Shop=>home");
+	Route::get(":shop/followers","Shop=>list_followers");
 
 
 	// Customer
