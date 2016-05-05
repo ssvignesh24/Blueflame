@@ -6,10 +6,12 @@
 		public function __construct($condition){
 			$this->rules = $condition;
 		}
+
 		public static function test($array){
 			$r = new static($array);
 			return $r;
 		}
+
 		public static function getRequestData($method){
 			$r = array();
 			if($method == "GET"){
@@ -25,9 +27,11 @@
 
 			return $r;
 		}
+
 		public function getErrorFields(){
 			return $this->error_fields;
 		}
+		
 		public function validate($method){
 			$errors = array();
 			$data = array();

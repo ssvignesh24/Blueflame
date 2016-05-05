@@ -39,7 +39,7 @@
 					"user_type"	=> 1
 				));
 			if($id > 0){
-				Session::set("id", $ruser_id);
+				Session::set("id", $user_id);
 				Session::set("user_type", 1);
 				Session::set("valid",true);
 			}

@@ -1,5 +1,5 @@
 (function(d,w){
-	cart_items = <?php echo Cart::getItems(); ?>;
+	cart_items = <?php  echo (Cart::getItems()); ?>;
 	src = "/uploads/banner/a9412584_1460119207.jpg";
 	owner = "/uploads/owner/2f8ff4c1_1460119207.jpg";
 	K.imageLoader(src,function(){

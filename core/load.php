@@ -5,6 +5,7 @@
 	include 'core/Upload.php';
 	include 'core/Session.php';
 	include 'core/Cookie.php';
+	include 'core/EmptySQLResult.php';
 	include 'core/Engine.php';
 	include 'core/Validation.php';
 	include 'core/Controller.php';

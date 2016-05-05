@@ -1,8 +1,6 @@
 <?php
 	class RogController extends Controller{
 
-		
-
 		public function subscribe(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
@@ -17,28 +15,34 @@
 			}
 		}
 
+		
+
 		// Shop register
 		public function shop_register(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
-				$dup = Customer::find("email = ? || mobile = ?",array($data['email'], $data['mobile']));
-				if($dup){
-					echo "Aldready customer";
+				$s_name = strtolower($data['name']);
+				//Dulpicate shop name
+				$s_id = Shop::find("name = ?",array($s_name));
+				if(!$s_id->is_empty()){
+					echo "Shop name taken";
+					return;
+				}
+				// Is customer?
+				$user = Customer::current();				
+				if($user === false){
+					echo "Not a user";
 				}else{
-					$picture = Uploads::moveImage("picture","uploads/owner/", substr(hash("sha512", $data['email'].time()), -8)."_".time());
-					$owner_id = Owner::add($data['name'],$data['email'],$data['mobile'],$picture);
+					$user->update(array(
+						"customer_type" => 2
+						));
+					Login::find("user_id = ?",array($user->customer_id))->update(array("user_type" => 2));
+					$owner_id = $user->customer_id;
 					$banner = Uploads::moveImage("s_banner","uploads/banner/",substr(hash("sha512", $owner_id.time()),-8)."_".time());
-					if($owner_id > 0){
-						$shop_id = Shop::add($data['s_name'],$owner_id, $banner, $data['s_city'], $data['s_state'], 'India', $data['email']);
-						if($shop_id && $shop_id > 0){
-							$l_id = Login::add_shop($data['email'],$data['mobile'],$data['password'],$owner_id);
-							if($l_id && $l_id > 0)
-								echo "yes";
-							else echo "no2";
-						}
-						else echo "no";
-					}elseif($owner_id == -1){
-						echo "Dup shop";
+					$picture = Uploads::moveImage("picture","uploads/shop/",substr(hash("sha512", $owner_id.time()),-8)."_".time());
+					$shop_id = Shop::add($s_name,$data['title'],$data['shop_type'], $owner_id, $banner, $data['s_city'], $data['s_state'], 'India', $user->email,$picture);
+					if($shop_id && $shop_id > 0){
+						header("Location:/product");
 					}
 					else echo "no";
 				}
@@ -47,20 +51,29 @@
 			}
 		}
 
+		public function shop_name(){
+			if($this->is_valid_request()){
+				$name = $this->getData()['name'];
+				$id = Shop::find("name = ?",array($name));
+				if($id == false)
+					echo 1;
+				else echo 0;
+			}else{
+				$this->showErrors();
+				return 0;
+			}
+		}
+
 		// Customer register
 		public function customer_register(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
-				$dup = Owner::find("email = ? || mobile = ?",array($data['email'], $data['mobile']));
-				if($dup){
-					echo "Aldready owner";
-				}else{
-					$cus_id = Customer::add($data['name'],$data['email'],$data['mobile'],$data['password'], $data['picture']);
-
-					if($cus_id && $cus_id > 0)
-						echo "ok";
-					else echo "no";
-				}
+				$customer_id = Rog::generate_user_id($data['email'],"customer");
+				$picture = Uploads::moveImage("picture","uploads/user_picture/",substr(hash("sha512", $customer_id.time()),-8)."_".time());
+				$cus_id = Customer::add($customer_id,$data['name'],$data['email'],$data['mobile'],$data['password'], $picture);
+				if($cus_id && $cus_id > 0)
+					echo "ok";
+				else echo "no";
 			}else{
 				$this->showErrors();
 			}
@@ -73,6 +86,16 @@
 				$id = Login::verify($data['username'], $data['password']);
 				if(is_array($id)){
 					//header("Location:/product");
+					if($id['user_type'] == 2){
+						$shop = Shop::find("owner_id = ?",array($id['id']));
+						if($shop)
+							$shop_id = $shop->shop_id;
+						else{
+							$this->logout();
+							die("No shop found");
+						}
+						Session::set("shop_id",$shop_id);
+					}
 					Session::print_all();
 				}elseif($id == 0){
 					echo "No user";

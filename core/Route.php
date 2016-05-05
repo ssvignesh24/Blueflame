@@ -38,7 +38,6 @@
 		public static function post($pattern, $handle, $validation = false){
 			if(!isset(Route::$_ROUTE['post']))
 				$_ROUTE['post'] = array();
-
 			Route::$_ROUTE['post'][$pattern] = $handle;
 			if($validation) Route::$_VALIDATION['post'][$pattern] = $validation;
 		}
@@ -46,7 +45,6 @@
 		public static function url($pattern, $handle, $validation = false){
 			if(!isset(Route::$_ROUTE['url']))
 				$_ROUTE['url'] = array();
-
 			Route::$_ROUTE['url'][$pattern] = $handle;
 			if($validation) Route::$_VALIDATION['url'][$pattern] = $validation;
 		}
@@ -57,6 +55,7 @@
 			$p = explode("/", $url);
 			$p_count = count($p);
 			$val = false;
+
 			if(isset(Route::$_ROUTE['url'][$url])){
 				$frags = explode("=>", Route::$_ROUTE['url'][$url]);
 				if(isset(Route::$_VALIDATION['url'][$url]))
@@ -87,7 +86,6 @@
 						Route::$_ROUTE['get_abst'][2]["_key_for"] = 1;
 					}
 				}
-			
 			}elseif($method == "GET" && !isset(Route::$_ROUTE['get'][$url]) && isset(Route::$_ROUTE['get']["_default"])){
 				$frags = explode("=>", Route::$_ROUTE['get']["_default"]);
 			}
@@ -96,9 +94,8 @@
 				if(isset(Route::$_VALIDATION['post'][$url]))
 					$val = Route::$_VALIDATION['post'][$url];
 			}
-
+			
 			try{
-
 				if($frags){
 					$r["controller"] = $frags[0]."Controller";
 					$filter = explode(":", $frags[1]);

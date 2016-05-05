@@ -1,8 +1,7 @@
 <?php
 
 	class Owner extends Engine{
-		public static function add($name, $email, $mobile, $picture){
-			$owner_id = Rog::generate_user_id($email,"owner");
+		public static function add($owner_id, $name, $email, $mobile, $picture){
 			$id = Owner::insert(array(
 					"owner_id" => $owner_id,
 					"name" => $name,

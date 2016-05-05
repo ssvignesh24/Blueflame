@@ -6,22 +6,20 @@
 	<body>
 		<form method="POST" action="/signup" enctype="multipart/form-data">
 			<input placeholder="name" name="name" type="text"><br/>
-			<input placeholder="enail" name="email" type="text"><br/>
-			<input placeholder="mobile" name="mobile" type="number"><br/>
-			<input placeholder="password" name="password" type="password"><br/>
-			<input placeholder="image" name="picture" type="file"><br/>
-
-			<input placeholder="Shop name" name="s_name" type="text"><br/>
-			
+			<input placeholder="Title" name="title" type="text"><br/>
 			<input placeholder="Started" name="s_started" type="date"><br/>
+			<select name="shop_type">
+				<option value="1">Sell products</option>
+				<option value="2">Sell photographs</option>
+			</select><br/>
 			<input placeholder="City" name="s_city" type="text"><br/>
 			<input placeholder="State" name="s_state" type="text"><br/>
 			<input placeholder="banner" name="s_banner" type="file"><br/>
+			<input placeholder="image" name="picture" type="file"><br/>
 <br/>
 			<input placeholder="Bank name" name="b_name" type="text"><br/>
 			<input placeholder="Account number" name="b_acc" type="text"><br/>
 			<input placeholder="Branch" name="b_branch" type="text"><br/>
-
 			<input type="submit" value="Signup">
 		</form>
 <br/>
@@ -40,4 +38,4 @@
 			<input type="submit" value="Login">
 		</form>
 	</body>
-</html>
+</html> 
