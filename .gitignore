@@ -1,9 +1,10 @@
 .DS_Store
 
 /config/db_config.php
+/assets/script/ga.js
 
-/db.sql
+db.sql
 
-/uploads 
+uploads 
 
-assets/script/ga.js
+
