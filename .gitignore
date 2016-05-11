@@ -9,3 +9,5 @@ db.sql
 uploads 
 
 bower_components
+
+npm-debug.log
