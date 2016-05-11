@@ -5,7 +5,7 @@
 	include 'core/load.php';
 	
 	$session = new Session();
-	if(explode("/", $_GET['route'])[0] == "admin"){
+	if(false){//explode("/", $_GET['route'])[0] == "admin"
 		include 'core/auth.php';
 		$a = new Admin();
 		$a->handle($_GET['route']);
@@ -17,7 +17,8 @@
 		else
 			$action = Route::route_of($_GET['route'], $_SERVER['REQUEST_METHOD']);
 		// Initiate controller pbject
-		$controller = new $action['controller'];
+		$action_controller = $action['controller'];
+		$controller = new $action_controller();
 		
 		// Check for filter
 		if($action['filter'] == true){

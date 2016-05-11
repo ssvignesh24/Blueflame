@@ -1,5 +1,6 @@
 (function(d,w){
 	cart_items = <?php  echo (Cart::getItems()); ?>;
+
 	src = "/uploads/banner/a9412584_1460119207.jpg";
 	owner = "/uploads/owner/2f8ff4c1_1460119207.jpg";
 	K.imageLoader(src,function(){
@@ -20,12 +21,17 @@
 		$(this).addClass("active");
 	});
 
-
+	$(".filter-select").click(function(){
+		if($(this).hasClass("filter-select-active")){
+			$(this).removeClass("filter-select-active");
+		}else{
+			$(this).addClass("filter-select-active");
+		}
+	})
 	$(".add_cart").click(function(){
 		action = $(this).attr("data-action");
 		product_id = $(this).attr("data-product-id");
 
-		K.l(action);
 		if(action == "add"){
 			$.post("/additem",{ product_id : product_id},function(response){
 				if(response > 0){
@@ -35,9 +41,28 @@
 		}else if(action == "remove"){
 			$.post("/removeitem",{ product_id : product_id},function(response){
 				if(response > 0){
-					$("button.add_cart[data-product-id='"+response.trim()+"']").attr("data-action","add").html("<span>Add to cart</span>");
+					$("button.add_cart[data-product-id='"+response.trim()+"']").attr("data-action","add").html("<span>Add to bag</span>");
 				}
 			});
 		}
 	});
+
+	$(".start-follow").click(function(){
+		shop = $(this).attr("data-shop");
+		if(!$(this).hasClass("unfollow")){
+			$.post("/follow_shop",{shop : shop}, function(d){
+				if(d == 1){
+					$(".start-follow").addClass("unfollow").html("-unfollow");
+
+				}
+			});
+
+		}else{
+			$.post("/unfollow_shop",{shop : shop}, function(d){
+				if(d == 1)
+					$(".start-follow").removeClass("unfollow").html("+Follow");;	
+			});
+		}
+	})
+
 })(document,window);

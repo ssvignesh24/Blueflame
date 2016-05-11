@@ -86,16 +86,7 @@
 				$id = Login::verify($data['username'], $data['password']);
 				if(is_array($id)){
 					//header("Location:/product");
-					if($id['user_type'] == 2){
-						$shop = Shop::find("owner_id = ?",array($id['id']));
-						if($shop)
-							$shop_id = $shop->shop_id;
-						else{
-							$this->logout();
-							die("No shop found");
-						}
-						Session::set("shop_id",$shop_id);
-					}
+					
 					Session::print_all();
 				}elseif($id == 0){
 					echo "No user";

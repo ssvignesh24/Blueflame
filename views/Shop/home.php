@@ -15,7 +15,8 @@
 				<p class="shop_name"><?php  echo $this->shop->title; ?></p>
 				<p class="shop_location"><?php echo $this->shop->city.", ".$this->shop->state.", India";?></p>
 				<div class="shop_info">
-					<p><?php echo $this->shop->product_count; ?> Products | <?php echo $this->shop->followers; ?> Followers | 34 Reviews | 4.5 <span class="fa fa-star"></span></p>
+					<p> <?php echo $this->shop->followers; ?> Followers | 34 Reviews | 4.5 <span class="fa fa-star"> </span>| <span data-shop="<?php echo $this->shop->shop_id; ?>" class="start-follow <?php  echo ($this->following)?  '"> +Follow' : 'unfollow"> -unfollow '; ?></span></p>
+					
 				</div>
 			</div>
 		</div>

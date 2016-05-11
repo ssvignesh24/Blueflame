@@ -8,6 +8,7 @@
 			"Digital content" => "Photographs, Digital arts (soft), Clip arts",
 			"Bags & Purses" => "Backpacks, handbags, travel bags, Men purse, women purse, market bags, Bottles, Sports bag, Food & Insulated bags",
 			"Shoes" => "Boy’s Shoes, Girl’s , Insoles, Men’s shoe, women’s shoe",
+			"Dress" => "Men, Women, Boys, Girls, Baby, House decoration",
 			"Gifts" => "Albums, Photo frames",
 			);
 
@@ -59,11 +60,22 @@
 		}
 
 		public static function heads(){
-			echo '<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="assets/icons/favicon.png"><script type="text/javascript" src="/assets/script/jq.js"></script><script type="text/javascript" src="/assets/script/K.js"></script><link rel="stylesheet" type="text/css" href="/assets/style/fa.css"><link rel="stylesheet" type="text/css" href="/assets/style/rog.css"><link rel="stylesheet" type="text/css" href="/assets/style/shop.css">';
+			echo '<meta name="viewport" content="width=device-width, initial-scale=1">'.PHP_EOL;
+			echo '<link rel="icon" type="image/png" href="assets/icons/favicon.png">'.PHP_EOL;
+			echo '<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>'.PHP_EOL;
+			echo '<script type="text/javascript" src="/assets/script/K.js">'.PHP_EOL;
+			echo '</script><link rel="stylesheet" type="text/css" href="/assets/style/fa.css">'.PHP_EOL;
+			echo '<link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">'.PHP_EOL;
+			echo '<link rel="stylesheet" type="text/css" href="/assets/style/rog.css">'.PHP_EOL;
+			echo '<link rel="stylesheet" type="text/css" href="/assets/style/shop.css">'.PHP_EOL;
 		}
 
 		public static function breadcrumbs(){
 			include 'breadcrumbs.php';
+		}
+
+		public static function sliders(){
+			echo "";
 		}
 	}
 

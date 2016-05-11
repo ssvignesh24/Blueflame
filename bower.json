@@ -1,0 +1,27 @@
+{
+  "name": "Rog",
+  "authors": [
+    "Vignesh Shanmugasundaram"
+  ],
+  "description": "P2P Ecommerce",
+  "main": "index.php",
+  "keywords": [
+    "rog",
+    "throg.in",
+    "index"
+  ],
+  "license": "MIT",
+  "homepage": "index.php",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "seiyria-bootstrap-slider": "^7.0.3"
+  }
+}

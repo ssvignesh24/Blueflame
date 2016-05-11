@@ -30,22 +30,38 @@
 			"price" => "int",
 			"title" => "required"
 		)));
+
+	Route::get("admin/product","Shop=>test");
+
+	Route::post("follow_shop","Shop=>follow_shop",Validation::test(array(
+			"shop" => "required"
+		)));
+
+	Route::post("unfollow_shop","Shop=>unfollow_shop",Validation::test(array(
+			"shop" => "required"
+		)));
 	Route::get("product","Shop=>new_product:filter");
+	
+	Route::get("product/:product_id","Product=>product");
+
 	Route::get("search","Product=>search", Validation::test(array(
+			"key" => "required"
+		)));
+	Route::post("search","Product=>search_json", Validation::test(array(
 			"key" => "required"
 		)));
 
 	Route::get("select/:shop","Shop=>change_shop:filter");
 	Route::get("shops","Shop=>list_shops:filter");
-	Route::get("shop_script","Shop=>script:filter");
+	Route::get("shop_script","Shop=>script");
 	Route::get(":shop","Shop=>home");
 	Route::get(":shop/followers","Shop=>list_followers");
 
 	// Cart
-	Route::post("additem","Cart=>add_item:filter",Validation::test(array(
+	Route::post("additem","Cart=>add_item",Validation::test(array(
 			"product_id" => "required"
 		)));
-	Route::post("removeitem","Cart=>remove_item:filter",Validation::test(array(
+	Route::post("removeitem","Cart=>remove_item",Validation::test(array(
 			"product_id" => "required"
 		)));
 	Route::get("cart","Cart=>show_cart");

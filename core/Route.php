@@ -17,7 +17,8 @@
 						Route::$_ROUTE['get_abst'][2]["_key_for"] = 1;
 					}elseif($p[0][0] != ":" && $p[1][0] == ":"){
 						Route::$_ROUTE['get_abst'][2][2][$p[0]] = $handle;
-						Route::$_ROUTE['get_abst'][2][2]["2_key"] = $p[1];
+						Route::$_ROUTE['get_abst'][2][2]["2_key".$p[0]] = $p[1];
+						//Route::$_ROUTE['get_abst'][2][2]["2_key"] = $p[1];
 						Route::$_ROUTE['get_abst'][2]["_key_for"] = 2;
 					}
 				}
@@ -86,6 +87,8 @@
 						Route::$_ROUTE['get_abst'][2]["_key_for"] = 1;
 					}
 				}
+			}elseif($method == "GET" && isset(Route::$_ROUTE['get'][$url])){
+				$frags = explode("=>", Route::$_ROUTE['get'][$url]);
 			}elseif($method == "GET" && !isset(Route::$_ROUTE['get'][$url]) && isset(Route::$_ROUTE['get']["_default"])){
 				$frags = explode("=>", Route::$_ROUTE['get']["_default"]);
 			}
@@ -105,7 +108,7 @@
 					if($val){
 						if($val->validate($method)){
 							$r['data'] = $val->getData();
-							if($p_count == 1)
+							if($p_count == 1 && $method == "GET")
 								$r['data'][substr(Route::$_ROUTE['get_abst']["1_key"], 1)] = $p[0];
 						}
 						else{
@@ -121,7 +124,7 @@
 							if(Route::$_ROUTE['get_abst'][2]["_key_for"] == 1)
 								$r['data'][substr(Route::$_ROUTE['get_abst'][2][1]["2_key"], 1)] = $p[0];
 							elseif(Route::$_ROUTE['get_abst'][2]["_key_for"] == 2)
-								$r['data'][substr(Route::$_ROUTE['get_abst'][2][2]["2_key"], 1)] = $p[1];
+								$r['data'][substr(Route::$_ROUTE['get_abst'][2][2]["2_key".$p[0]], 1)] = $p[1];
 						}
 					}
 					unset($r['data']['route']);

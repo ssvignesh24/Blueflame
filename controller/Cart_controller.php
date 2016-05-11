@@ -68,7 +68,7 @@
 			if(Session::has("cart_id"))
 				$this->items = Cart::join(array("product"))->where("cart_id = ?",array(Session::get("cart_id")));
 			else
-				$this->items = false;
+				$this->items = new EmptySQLResult();
 			$this->render("cart");
 		
 		}

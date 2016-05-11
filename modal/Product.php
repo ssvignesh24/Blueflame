@@ -51,7 +51,9 @@
 			array_push($values, $pricemin);
 			$result_desc = Product::execute($q,$values);
 			$res = array_merge($result,$result_desc);
-			//var_dump($res);
+			if(count($res) > 0)
+				return $res;
+			else return false;
 		}
 	}
 ?>

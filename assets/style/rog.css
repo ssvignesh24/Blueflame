@@ -25,8 +25,8 @@
 }
 *{box-sizing : border-box;}
 body{margin: 0px;font-family: 'open-sans',arial, sans-serif;}
-.content{width: 800px;min-height: 100px;margin: auto auto;}
-ul,li,p{margin: 0px;padding: 0}
+.content{width: 1024px;min-height: 100px;margin: auto auto;}
+
 .rog-head{width: 100%;height: 150px;background-color: #272b35}
 .rog-head .page-title{font-size: 30pt;font-weight: 100;color: #FFF;width: 100%;height: 100%;padding: 5px;}
 .rog-head .page-title span{position: relative;top : 35px;}
@@ -36,3 +36,6 @@ ul,li,p{margin: 0px;padding: 0}
 .breadcrumbs .action i{position: relative;top:13px;left: -1px}
 
 
+.datepicker .dropdown-menu {
+  background-color:#FFF !important;
+}

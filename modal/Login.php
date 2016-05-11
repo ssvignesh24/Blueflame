@@ -10,6 +10,12 @@
 					Session::set("id", $record->user_id);
 					Session::set("user_type", $record->user_type);
 					Session::set("valid",true);
+					if($record->user_type == 2){
+						$shop = Shop::find("owner_id = ? AND default_shop = 1",array($record->user_id));
+						if(!$shop->is_empty()){
+							Session::set("shop_id",$shop->shop_id);
+						}
+					}
 					return array(
 						"id" => $record->user_id,
 						"user_type" => $record->user_type

@@ -8,5 +8,9 @@
 		public function is_empty(){
 			return true;
 		}
+
+		public function count(){
+			return 0;
+		}
 	}
 ?>

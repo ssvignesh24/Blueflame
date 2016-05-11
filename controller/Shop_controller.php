@@ -3,6 +3,7 @@
 	class ShopController extends Controller{
 
 		public function __filter_request(){
+			Session::print_all();
 			if(Session::has('valid') && Session::has('id') && Session::has("shop_id")){
 				return true;
 			}
@@ -20,6 +21,10 @@
 			$this->user = Customer::current()->name;
 			$this->shops = Shop::list_shop();
 			$this->render("list_shop");
+		}
+
+		public function test(){
+			echo "HELLO ADMIN";
 		}
 
 		public function change_shop(){
@@ -46,10 +51,12 @@
 				$shop_id = $this->shop->shop_id;
 				$this->categories = Product::get_catagories($shop_id);
 				$this->products = Product::find("shop_id = ?",array($shop_id));
-
+				$follow = Shop_follower::find(" shop_id = ? AND customer_id = ?",array($shop_id, Session::get("id")));
+				$this->following = $follow->is_empty();
 				if(Session::has("cart_id")){
 					$cart_id = Session::get("cart_id");
 					$this->cart_items = Cart::get_cart_items($cart_id);
+					
 				}else
 					$this->cart_items = array();
 				$this->render("home");
@@ -72,6 +79,24 @@
 
 		public function moveProduct(){
 
+		}
+
+		public function follow_shop(){
+			if($this->is_valid_request()){
+				$data = $this->getData();
+				$shop = $data['shop'];
+				Shop_follower::add($shop,Session::get("id"));
+				echo 1;
+			}
+		}
+
+		public function unfollow_shop(){
+			if($this->is_valid_request()){
+				$data = $this->getData();
+				$shop = $data['shop'];
+				Shop_follower::remove($shop,Session::get("id"));
+				echo 1;
+			}
 		}
 
 		public function create_product(){

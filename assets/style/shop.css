@@ -6,6 +6,9 @@
 .shop_details .shop_name{color: #FFF;text-shadow:0px 0px 3px rgba(0,0,0,0.5);font-size: 20pt;font-weight: 600;text-align: center;margin:0;margin-top:10px;}
 .shop_details .shop_location,.shop_details .shop_info{margin-top: 5px;font-size: 12pt;color: #FFF;text-shadow:0px 0px 3px rgba(0,0,0,0.5);text-align: center;font-weight: 400}
 .shop_details .shop_info{font-size: 14pt;font-weight: 600;margin-top: 20px}
+.shop_details .shop_info .start-follow{width: 123px;font-size: 11pt;height: 30px;background: #4db448;padding: 3px 11px 5px;margin-right: 10px;}
+.shop_details .shop_info .start-follow:hover{cursor: pointer;}
+.shop_details .shop_info .unfollow{background: #b44848}
 .category_outer{width: 100%;text-align: center;margin-top: 50px;margin-bottom: 20px}
 .category_outer li{display: inline-block;padding: 10px;color: #333;text-align: center;min-width: 120px;height: 50px;font-size: 13pt;border: 1px solid rgba(0,0,0,0);transition : border-color 0.3s;margin: auto 10px 10px}
 .category_outer li:hover{cursor: pointer;border-color : #999;}
@@ -26,10 +29,13 @@
 .product_listing .product .product_info .product_extra .product_rating{float: right;}
 .product_listing .product .product_info .product_extra .product_rating .fa-star{color: #f3e040}
 
+
+
+
 /*Cart*/
 
 .cart-body{background-color: #f9f9f9}
-.cart-outer{width: 100%;min-height: 100px;background-color: #FFF;padding:10px;position: relative;top: -30px;border:1px solid #EEE;}
+.cart-outer{width: 990px;min-height: 100px;background-color: #FFF;padding:10px;position: relative;top: -30px;border:1px solid #EEE;margin: auto;}
 .cart-outer ul{list-style: none;padding : 0;}
 .cart-outer li.cart_item{width: 100%;height: 150px;padding:10px 0px;margin-bottom: 10px;}
 .cart-outer li.cart_item .close{width: 30px;height: 100%;float: left;}
@@ -62,32 +68,73 @@
 
 .search-filter-outer{width: 100%;min-height: 60px;background: #242424;transition: background 0.3s;}
 .search-filter-outer:hover{cursor: pointer;background: #222;}
-.search-filter-outer .search-filter{width: 800px;height: auto;margin: auto;color: #FFF;padding-left: 20px;position: relative;}
-.search-filter-outer .search-filter .filter-options{width: 100%;height: 300px;}
-.search-filter-outer .search-filter .filter-icon{font-size: 18pt;position: absolute;top:15px;left:0px;}
-.search-filter-outer .search-filter .filter-text{font-size: 15pt;position: relative;left:15px;top:15px;}
+.search-filter-outer .search-filter{width: 1024px;height: auto;margin: auto;color: #FFF;padding-left: 20px;position: relative;}
+.search-filter-outer .search-filter .filter-icon-outer{width: 25px;height: 25px;position: absolute;top:15px;left:0px;}
+.search-filter-outer .search-filter .filter-icon{font-size: 18pt;}
+.search-filter-outer .search-filter .filter-text{font-size: 15pt;position: relative;left:15px;top:15px;margin: 0px}
 .search-head{position: relative;padding-left: 30px;font-size: 13pt;}
 .search-head .clear-search{position: absolute;width: 30px;height: 30px;left: 0px;font-size: 24pt;font-weight: normal;text-align: center;padding-top: 2px;top:68px;transition : background-color 0.3s;}
 .search-head .clear-search:hover{background-color: #9a3030;cursor: pointer;}
-.search-head .clear-search span{position: absolute;top:-8px;left: 6px;}
-.search-head .search-key{position: relative;top:55px;background: rgba(0,0,0,0);color: #FFF;width: 750px;height: 45px;left: 25px;font-size: 20pt;border: 0;padding: 5px;padding-left: 10px;border-bottom : 1px solid rgba(0,0,0,0);transition: border-bottom-color 0.3s;font-weight: 200;letter-spacing: 1px}
+.search-head .clear-search span{position: absolute;top:-10px;left: 5px;}
+.search-head .search-key{position: relative;top:55px;background: rgba(0,0,0,0);color: #FFF;width: 95%;height: 45px;left: 25px;font-size: 20pt;border: 0;padding: 5px;padding-left: 10px;border-bottom : 1px solid rgba(0,0,0,0);transition: border-bottom-color 0.3s;font-weight: 200;letter-spacing: 1px}
 .search-head .search-key:focus{border-bottom-color : #FFF;outline: none;}
-
+.search-filter-outer .search-filter .filter-options{width: 100%;height: 0px;padding: 0px;overflow: hidden;transition : height 0.4s;}
+.search-filter-outer .search-filter .filter-options .filter-left{width: 50%;float: left;}
+.search-filter-outer .search-filter .filter-options .filter-right{width: 50%;float: right;height: 100%;}
+.search-filter-outer .search-filter .filter-options .filter-right .select-segment{width: 100%;height: 50px;float: left;margin-bottom: 15px;}
+.search-filter-outer .search-filter .filter-options .filter-select{min-width: 100px;max-width:400px;height: 25px;position: relative;padding-left: 25px;font-size: 12pt;top:12px;left: 10px;}
+.search-filter-outer .search-filter .filter-options .filter-select span{position: relative;top:-2px;}
+.search-filter-outer .search-filter .filter-options .filter-select:before{position: absolute;left:0px;top:0px;content: '';width:17px;height: 17px;background-color: #FFF}
+.search-filter-outer .search-filter .filter-options .filter-select-active:before{font:normal normal normal 14px/1 FontAwesome;content: "\f00c";color: #000;padding-left: 2px;padding-top: 2px;}
+.search-filter-outer .search-filter .filter-options .gender-filter{width: 100%;height: 30px;margin-top: 55px;margin-left: 8px}
+.search-filter-outer .search-filter .filter-options .gender-filter .gender-select{float: left;top:2px;left:24px;}
+.search-filter-outer .search-filter .filter-options .gender-filter .gender-label{float: left;font-size: 13pt;}
+.search-filter-outer .search-filter .filter-options .price-filter{width: 100%;height: 70px;margin-top: 45px;font-size: 13pt;margin-left: 8px;}
+.search-filter-outer .search-filter .filter-options .price-filter .slider-handle{background: #FFF;border:2px solid #000;width: 25px;height: 25px;top:-2px;}
+.search-filter-outer .search-filter .filter-options .price-filter .price-selector{width: 100%;}
+.search-filter-outer .search-filter .filter-options .price-filter .tooltip-inner{background-color: #4b4b4b !important;padding: 7px 12px !important;font-size: 16px;}
+.search-filter-outer .search-filter .filter-options .price-filter .tooltip-arrow{border-bottom-color : #4b4b4b !important;}
+.search-filter-outer .search-filter .filter-options .price-filter .slider{width: 70% !important;left: 10px;top:-2px;}
+.search-filter-outer .search-filter .filter-options .price-filter .slider-selection{background: #6580c3}
+.search-filter-outer .search-filter .filter-options .filter-selectric{width: 250px;height: 45px;background-color: #444;padding-left: 50px;position: relative;}
+.search-filter-outer .search-filter .filter-options .filter-selectric:after{position: absolute;font:normal normal normal 14px/1 FontAwesome;content: "\f078";color: #FFF;padding-top: 15px;text-align: center;width: 50px;height: 45px;right: 0px;top:0px;background-color: #444;border-left: 1px solid #222;}
+.search-filter-outer .search-filter .filter-options .filter-days{margin-top: 15px;float: left;font-size: 12pt;margin-left: 50px;padding-left: 15%;text-align: left;padding: 5px;}
+.search-filter-outer .search-filter .filter-options .filter-days-select{position: relative;top:-10px;left: 10px;float: right;}
+.search-filter-outer .search-filter .filter-options .filter-days-select span{position: relative;top:5px;left: 5px;}
+.search-filter-outer .search-filter .filter-options .filter-days-select .select-option-outer{width: 100%;position: absolute;height: 0px;top: 46px;background-color: #444;left:0px;z-index: 20;overflow: hidden;transition: height 0.3s;box-shadow: 0px 0px 5px #000}
+.search-filter-outer .search-filter .filter-options .filter-days-select .select-option-outer ul{padding: 0px;margin: 0}
+.search-filter-outer .search-filter .filter-options .filter-days-select .select-option-outer .select-option{width: 100%;height: 40px;list-style: none;}
+.search-filter-outer .search-filter .filter-options .filter-days-select .select-option-outer .select-option:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
+.search-filter-outer .search-filter .filter-options .filter-days-select .select-option-outer .select-option span{color: #FFF;position: relative;top:8px;left:12px;}
+.search-filter-outer .search-filter .search-outer{width: 100%;height: 50px;margin: auto;float: left;}
+.search-filter-outer .search-filter .search-outer button{float: right;color: #FFF;border:0;width: 200px;height: 40px;background-color: #4db448;font-size: 13pt;position: relative;top:-50px;font-weight: 500;left: 10px;}
+.search-filter-outer .search-filter .search-outer button:focus{outline: none;}
 .search-result-outer{width: 100%;min-height: 100%;position: relative;padding:10px;padding-top: 20px;float: left;}
-.search-result-outer .search-result{list-style: none;}
-.search-result-outer .search-result .search-item{width: 245px;min-height: 235px;display: inline-block;margin:0px 7px 25px;padding: 10px;transition : background-color 0.3s;float: left;}
+.search-result-outer .search-result{list-style: none;padding: 0}
+.search-result-outer .search-result .search-item{width: 290px;min-height: 235px;display: inline-block;margin:0px 22px 25px;padding: 10px;transition : background-color 0.3s;float: left;}
 .search-result-outer .search-result .search-item:hover{background-color: #EEE;cursor: pointer;}
-.search-result-outer .search-result .search-item .image{width: 100%;height: 150px;background-color: red;margin: auto;overflow: hidden;}
+.search-result-outer .search-result .search-item .image{width: 100%;height: 200px;background-color: #999;margin: auto;overflow: hidden;position: relative;}
+.search-result-outer .search-result .search-item .image .add_to_bag{width: 100%;position: absolute;left:0px;bottom: -50px;height: 50px;background-color: red;background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.26) 36%, rgba(0,0,0,0.6) 84%);background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(36%, rgba(0,0,0,0.26)), color-stop(84%, rgba(0,0,0,0.6)));background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.26) 36%, rgba(0,0,0,0.6) 84%);background: -o-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.26) 36%, rgba(0,0,0,0.6) 84%);background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.26) 36%, rgba(0,0,0,0.6) 84%);background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,0,0,0.26) 36%, rgba(0,0,0,0.6) 84%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000', GradientType=0 );text-align: center;transition : bottom 0.3s;}
+.search-result-outer .search-result .search-item .image .add_to_bag button{background-color: #4db448;color: #FFF;width: 150px;height: 35px;border:0px;font-size: 12pt;font-weight: 500;}
+.search-result-outer .search-result .search-item .image .add_to_bag button[data-action='remove']{background-color: #d43e3e}
+.search-result-outer .search-result .search-item .image .add_to_bag button[data-action='remove']:hover{cursor: pointer;background-color: #bc3a3a}
+.search-result-outer .search-result .search-item .image .add_to_bag button:focus{outline: none;}
+.search-result-outer .search-result .search-item .image .item_action{width: 100%;position: absolute;left:0px;top: -30px;height: 30px;background-color: rgba(0,0,0,0.4);transition : top 0.3s;}
+.search-result-outer .search-result .search-item:hover .image .add_to_bag{bottom: 0px !important}
+.search-result-outer .search-result .search-item:hover .image .item_action{top:0px;}
+.search-result-outer .search-result .search-item .image:hover{cursor: pointer;}
 .search-result-outer .search-result .search-item .image img{width: 100%;min-height: 100%}
 .search-result-outer .search-result .search-item .info-outer{width: 100%;min-height: 75px;}
 .search-result-outer .search-result .search-item .info-outer .item-title{font-size: 12pt;color: #222;text-align: left;margin-top: 5px;}
 .search-result-outer .search-result .search-item .info-outer .extra-info{width: 100%;height: 40px;padding-top: 10px}
-.search-result-outer .search-result .search-item .info-outer .extra-info .cost{float: left;font-weight: bold;color: #333;}
+.search-result-outer .search-result .search-item .info-outer .extra-info .cost{float: left;font-weight: bold;color: #333;font-size: 13pt;position: relative;top:-5px;}
 .search-result-outer .search-result .search-item .info-outer .extra-info .rating,.search-result-outer .search-result .search-item .info-outer .extra-info .rating-icon{float: right;}
 .search-result-outer .search-result .search-item .info-outer .extra-info .rating-icon{color: #efc829;margin-left: 5px;position: relative;top:3px;}
 
 
 .footer{width: 100%;height: 100px;background-color: #444;float: left;}
+
+
 
 
 
