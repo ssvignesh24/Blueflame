@@ -23,12 +23,14 @@
     }
 
     public static function join($data){
+      if(!is_array($data))
+        $data = array($data);
       return new SQLResult(false, strtolower(get_called_class()), $data);
     }
 
     protected static function handle_db_error($message){
       var_dump($message);
-      throw new Exception($message[2]);
+      throw new Exception($message);
     }
 
     public static function now(){
@@ -114,6 +116,8 @@
     }   
 
     static public function find($condition, $values){
+      if(!is_array($values))
+        $values = array($values);
       $table = strtolower(get_called_class());
       $q = "SELECT * FROM `$table` WHERE $condition";
       $result = Engine::prepare_and_execute($q,$values);

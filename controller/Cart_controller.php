@@ -10,29 +10,23 @@
 		public function add_item(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
-				$id = Product::find("product_id = ?",array($data['product_id']));
-				if($id == false){
+
+				$product = Product::find("product_id = ?",array($data['product_id']));
+				if($product->is_empty()){
 					// Not a valid product
 				}else{
-					if($id->active == 1){
-						if(!Session::has('cart_id')){
-							$u_id = Session::get("id");
-							$cart_id = Rog::generate_user_id($u_id,"cart");
-							Session::set("cart_id",$cart_id);
-						}
-						else
-							$cart_id = Session::get("cart_id");
-						$product_id = $data['product_id'];
-						$customer_id = Session::get("id");
-						$id = Cart::insert(array(
-							"cart_id" => $cart_id,
-							"product_id" => $product_id,
-							"customer_id" => $customer_id
-						));
+					if($product->active == 1){
 
-						if($id > 0)
-							echo $product_id;
-						else echo 0;
+						$product_id = $data['product_id'];
+						$data = array(
+								"product_id" => $product_id,
+								"product_name" => $product->product_title,
+								"image" => $product->media_cover,
+								"cost" => $product->cost,
+								"quantity" => 1
+							);
+
+						echo (Redis::add_to_bag($data))? $product_id : 0;
 					}
 					else{
 						echo -1;
@@ -46,16 +40,13 @@
 		public function remove_item(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
-				$id = Product::find("product_id = ?",array($data['product_id']));
-				if($id == false){
+				$product = Product::find("product_id = ?",array($data['product_id']));
+				if($product->is_empty()){
 					// Not a valid product
 				}else{
-					if($id->active == 1 && Session::has("cart_id")){
-						$cart_id = Session::get("cart_id");
+					if($product->active == 1){
 						$product_id = $data['product_id'];
-						$customer_id = Session::get("id");
-						Cart::delete("cart_id = ? AND product_id = ? AND customer_id = ?",array($cart_id,$product_id,$customer_id));
-						echo $product_id;
+						echo (Redis::remove_from_bag($product_id))? $product_id : 0;
 					}else
 						echo -1;
 				}
@@ -65,12 +56,31 @@
 		}
 
 		public function show_cart(){
-			if(Session::has("cart_id"))
-				$this->items = Cart::join(array("product"))->where("cart_id = ?",array(Session::get("cart_id")));
-			else
-				$this->items = new EmptySQLResult();
+			$bag_items = Redis::show_bag();
+			if($bag_items){
+				$this->bag = array();
+				foreach ($bag_items as $key => $value) {
+					$this->bag[$key] = json_decode($value);
+				}
+				$this->count = count($this->bag);
+			}else{
+				$this->bag = false;
+				$this->count = 0;
+			}
+
 			$this->render("cart");
 		
+		}
+
+		public function validate_coupon(){
+			if($this->is_valid_request()){
+				$coupon = $this->getData()['coupon'];
+				$coupon_code = Coupon::find("coupon_code = ? ",$coupon);
+				if($coupon_code->is_not_empty()){
+					echo $coupon_code->discount_price;
+					Redis::setcoupon($coupon_code->discount_price);
+				}else echo -1;
+			}else echo -1;
 		}
 
 		public function cart_products(){

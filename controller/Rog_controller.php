@@ -15,15 +15,13 @@
 			}
 		}
 
-		
-
 		// Shop register
 		public function shop_register(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
 				$s_name = strtolower($data['name']);
 				//Dulpicate shop name
-				$s_id = Shop::find("name = ?",array($s_name));
+				$s_id = Shop::find("shop_name = ?",array($s_name));
 				if(!$s_id->is_empty()){
 					echo "Shop name taken";
 					return;
@@ -40,7 +38,7 @@
 					$owner_id = $user->customer_id;
 					$banner = Uploads::moveImage("s_banner","uploads/banner/",substr(hash("sha512", $owner_id.time()),-8)."_".time());
 					$picture = Uploads::moveImage("picture","uploads/shop/",substr(hash("sha512", $owner_id.time()),-8)."_".time());
-					$shop_id = Shop::add($s_name,$data['title'],$data['shop_type'], $owner_id, $banner, $data['s_city'], $data['s_state'], 'India', $user->email,$picture);
+					$shop_id = Shop::add($s_name,$data['shop_title'],$data['shop_type'], $owner_id, $banner, $data['s_city'], $data['s_state'], 'India', $user->email,$picture);
 					if($shop_id && $shop_id > 0){
 						header("Location:/product");
 					}
@@ -79,7 +77,6 @@
 			}
 		}
 
-
 		public function login(){
 			if($this->is_valid_request()){
 				$data = $this->getData();
@@ -88,14 +85,25 @@
 					//header("Location:/product");
 					
 					Session::print_all();
+					if(isset($data['space'])){
+
+					}
 				}elseif($id == 0){
-					echo "No user";
+					$this->attempt = $data['attempt'] + 1;
+					$this->render("login_page");
 				}elseif($id == -1){
-					echo "Not a valid password";
+					$this->attempt = $data['attempt'] + 1;
+					$this->render("login_page");
 				}
 			}else{
 				$this->showErrors();
 			}
+		}
+
+		public function login_page(){
+			$this->attempt = 1;
+			$this->space = (isset($this->getData()['space']))? $this->getData()['space'] : false;
+			$this->render("login_page");
 		}
 	}
 ?>

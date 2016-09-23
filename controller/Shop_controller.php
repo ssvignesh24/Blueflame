@@ -3,8 +3,9 @@
 	class ShopController extends Controller{
 
 		public function __filter_request(){
-			Session::print_all();
-			if(Session::has('valid') && Session::has('id') && Session::has("shop_id")){
+			$user = Redis::current_user();
+			var_dump($user);
+			if(isset($user->valid) && isset($user->id) && isset($user->shop_id)){
 				return true;
 			}
 			else return false;
@@ -13,8 +14,11 @@
 		public function new_product(){
 			$this->p_c = Rog::PRODUCT_CATGORY;
 			$this->p_option = Rog::PRODUCT_OPTION;
-			$this->catagery = Product::get_catagories(Session::get("shop_id"));
-			$this->render("product_form");
+			$shop_id = Redis::current_shop();
+			if($shop_id){
+				$this->catagery = Product::get_catagories($shop_id);
+				$this->render("product_form");
+			}	
 		}
 
 		public function list_shops(){
@@ -23,26 +27,23 @@
 			$this->render("list_shop");
 		}
 
-		public function test(){
-			echo "HELLO ADMIN";
-		}
-
 		public function change_shop(){
 			$data = $this->getData();
-			$this->shop = Shop::find("name = ? AND owner_id = ?",array(strtolower($data['shop']), Session::get("id")));
+			$this->shop = Shop::find("shop_name = ? AND owner_id = ?",array(strtolower($data['shop']), Redis::current_uid()));
 			if($this->shop->is_empty()){
 				header("Location:/");
 				die();
 			}else{
 				$shop_id = $this->shop->shop_id;
 				Session::set("shop_id",$shop_id);
-				header("Location:/".$this->shop->name);
+				header("Location:/".$this->shop->shop_name);
 			}
 		}
 
 		public function home(){
 			$data = $this->getData();
-			$this->shop = Shop::find("name = ?",array(strtolower($data['shop'])));
+			$this->is_logged_in = Redis::current_uid();
+			$this->shop = Shop::find("shop_name = ?",array(strtolower($data['shop'])));
 			if($this->shop->is_empty()){
 				header("Location:/");
 				die();
@@ -51,14 +52,18 @@
 				$shop_id = $this->shop->shop_id;
 				$this->categories = Product::get_catagories($shop_id);
 				$this->products = Product::find("shop_id = ?",array($shop_id));
-				$follow = Shop_follower::find(" shop_id = ? AND customer_id = ?",array($shop_id, Session::get("id")));
-				$this->following = $follow->is_empty();
-				if(Session::has("cart_id")){
-					$cart_id = Session::get("cart_id");
-					$this->cart_items = Cart::get_cart_items($cart_id);
-					
+				if(Redis::is_logged_in()){
+					$follow = Shop_follower::find(" shop_id = ? AND customer_id = ?",array($shop_id,Redis::current_uid()));
+					$this->following = $follow->is_empty();
+				}
+				else
+					$this->following = true;
+				
+				if(Cookie::has("rog_c")){
+					$this->cart_items = Redis::bag_products();
 				}else
 					$this->cart_items = array();
+
 				$this->render("home");
 			}
 		}
@@ -85,7 +90,7 @@
 			if($this->is_valid_request()){
 				$data = $this->getData();
 				$shop = $data['shop'];
-				Shop_follower::add($shop,Session::get("id"));
+				Shop_follower::add($shop,Redis::current_uid());
 				echo 1;
 			}
 		}
@@ -94,7 +99,7 @@
 			if($this->is_valid_request()){
 				$data = $this->getData();
 				$shop = $data['shop'];
-				Shop_follower::remove($shop,Session::get("id"));
+				Shop_follower::remove($shop,Redis::current_uid());
 				echo 1;
 			}
 		}
@@ -103,7 +108,7 @@
 			if($this->is_valid_request()){
 				$data = $this->getData();
 				$media = "";
-				$shop_id = Session::get('shop_id');
+				$shop_id = Redis::current_shop();
 				$overview = $data['overview'];
 				$days = $data['days'] + 2;
 				$prod_id = Rog::generate_user_id($data['title'],"product");

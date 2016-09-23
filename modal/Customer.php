@@ -7,7 +7,7 @@
 
 			$id = Customer::insert(array(
 					"customer_id" => $customer_id,
-					"name" => $name,
+					"customer_name" => $name,
 					"email" => $email,
 					"mobile" => $mobile,
 					"picture" => $picture,

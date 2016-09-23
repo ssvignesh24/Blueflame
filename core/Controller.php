@@ -7,6 +7,9 @@
       return true;
     }
 
+    public static function newInstance(){
+      return new static();
+    }
     public function filter_failed(){
       die("Request did not pass filter");
     }

@@ -22,10 +22,37 @@
 				return true;
 		}
 
+		public function is_not_empty(){
+			return !$this->is_empty();
+		}
+
+		public function to_json($process = false){
+			$r = $this->result;
+			if(is_callable($process)){
+				if(is_array($r)){
+					foreach ($r as $value) {
+						$process($value);
+					}
+				}else
+					$process($r);
+				}
+			if($r)
+				return json_encode($r);
+			else return 0;
+		}
+
 		public function where($condition, $data){
-			$q = "SELECT * FROM `".$this->table."` ";
+			if(!is_array($data))
+				$data = array($data);
+			$q = "SELECT *,".$this->table.".created_at as p_created_at FROM `".$this->table."`";
 			foreach ($this->joins as $join) {
-				$q .= " INNER JOIN `$join` on ".$this->table.".".$join."_id = $join.".$join."_id ";
+				$pices = explode(":", $join);
+				if(count($pices) > 1){
+					$j = $pices[0];
+					$q .= " INNER JOIN `$j` on ".$this->table.".".$pices[1]." = $j.".$pices[0]."_id ";
+				}else{
+					$q .= " INNER JOIN `$join` on ".$this->table.".".$join."_id = $join.".$join."_id ";
+				}
 			}
 			$q .= " WHERE ".$condition;
 			$result = Engine::prepare_and_execute($q, $data);

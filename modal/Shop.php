@@ -7,10 +7,10 @@
 			$type = (int)$type;
 			$id = Shop::insert(array(
 					"shop_id" => $shop_id,
-					"name" => $name,
+					"shop_name" => $name,
 					"owner_id" => $owner_id,
 					"shop_type" => $type,
-					"title" => $title,
+					"shop_title" => $title,
 					"picture" => $picture,
 					"banner" => $banner,
 					"city" => $city,

@@ -12,14 +12,20 @@
 
 	}else{
 
+		if(filter_input(INPUT_GET, 'route') == null) die();
+		
 		if(count(explode(".", $_SERVER['HTTP_HOST'])) >= 3)
-			$action = Route::route_of("*.".$_GET['route'], $_SERVER['REQUEST_METHOD']);
+			$action = Route::route_of("*.".filter_input(INPUT_GET, 'route'), $_SERVER['REQUEST_METHOD']);
 		else
-			$action = Route::route_of($_GET['route'], $_SERVER['REQUEST_METHOD']);
+			$action = Route::route_of(filter_input(INPUT_GET, 'route'), $_SERVER['REQUEST_METHOD']);
+
+		if($action['controller'] == "" || $action['action'] == "") die();
+
 		// Initiate controller pbject
 		$action_controller = $action['controller'];
-		$controller = new $action_controller();
-		
+
+		$controller = $action_controller::newInstance();
+
 		// Check for filter
 		if($action['filter'] == true){
 			if(!$controller->__filter_request())

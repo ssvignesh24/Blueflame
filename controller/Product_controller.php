@@ -10,7 +10,7 @@
 
 		public function product(){
 			$data = $this->getData();
-			echo $data['product_id'];
+			$this->render("product");
 		}
 
 		public function search(){
@@ -20,15 +20,17 @@
 				$this->product_list = Product::search($this->key);
 				if($this->product_list)
 					$this->product_list = json_encode($this->product_list,JSON_FORCE_OBJECT);
-				if(Session::has("cart_id")){
-					$cart_id = Session::get("cart_id");
-					$this->cart_items = Cart::get_cart_items($cart_id);
-					if(count($this->cart_items) > 0)
-						$this->cart_items = json_encode($this->cart_items);
+				if(Cookie::has("rog_c")){
+
+					$this->bag = Redis::bag_products();
+
+					//$this->bag = Cart::get_cart_items($cart_id);
+					if(count($this->bag) > 0)
+						$this->bag = json_encode($this->bag);
 					else
-						$this->cart_items = false;
+						$this->bag = false;
 				}else
-					$this->cart_items = array();
+					$this->bag = array();
 
 				$this->render("search");
 			}else $this->showErrors();

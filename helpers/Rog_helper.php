@@ -47,6 +47,8 @@
 				$id = "9";
 			elseif($who == "option")
 				$id = "0".$data."_";
+			elseif($who == "coupon")
+				$id = "A";
 
 			$sum = 0;
 			
@@ -60,15 +62,20 @@
 		}
 
 		public static function heads(){
+			static::general_heads();
 			echo '<meta name="viewport" content="width=device-width, initial-scale=1">'.PHP_EOL;
 			echo '<link rel="icon" type="image/png" href="assets/icons/favicon.png">'.PHP_EOL;
-			echo '<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>'.PHP_EOL;
-			echo '<script type="text/javascript" src="/assets/script/K.js">'.PHP_EOL;
-			echo '</script><link rel="stylesheet" type="text/css" href="/assets/style/fa.css">'.PHP_EOL;
-			echo '<link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">'.PHP_EOL;
 			echo '<link rel="stylesheet" type="text/css" href="/assets/style/rog.css">'.PHP_EOL;
 			echo '<link rel="stylesheet" type="text/css" href="/assets/style/shop.css">'.PHP_EOL;
 		}
+
+		public static function general_heads(){
+			echo '<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>'.PHP_EOL;
+			echo '<script type="text/javascript" src="/assets/script/jq.js"></script>'.PHP_EOL;
+			echo '</script><link rel="stylesheet" type="text/css" href="/assets/style/fa.css">'.PHP_EOL;
+			echo '<link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">'.PHP_EOL;
+			echo '<script type="text/javascript" src="/assets/script/K.js"></script>'.PHP_EOL;
+		}		
 
 		public static function breadcrumbs(){
 			include 'breadcrumbs.php';

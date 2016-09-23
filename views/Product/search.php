@@ -11,6 +11,7 @@
 	</head>
 	<body class="cart-body">
 		<?php Rog::breadcrumbs(); ?>
+		<?php include 'product-dialog.php'; ?>
 		<div class="rog-head">
 			<div class="content">
 				<div class="page-title search-head">
@@ -104,7 +105,7 @@
 		<script type="text/javascript">
 			
 			var product_list = <?php echo ($this->product_list)? $this->product_list : "null"; ?>;
-			var cart_items = <?php echo ($this->cart_items)? $this->cart_items : "null"; ?>;
+			var cart_items = <?php echo ($this->bag)? $this->bag : "null"; ?>;
 			$(".search-filter-outer ").click(function(){
 				this_ = $(this).children(".search-filter");
 				state = $(this_).attr("data-status");
@@ -206,9 +207,9 @@
 			function populate(data){
 				for(d in data){
 					if(!cart_items || cart_items.indexOf(data[d].product_id  + "") < 0)
-						element = '<li class="search-item" data-shop="'+data[d].shop_id+'" data-item="'+data[d].product_id+'"><div class="image"><div class="item_action"></div><img src="'+data[d].media_cover+'"><div class="add_to_bag"><button data-product-id="'+data[d].product_id+'" data-action="add">Add to bag</button></div></div><div class="info-outer">	<p class="item-title">'+data[d].title+'</p><div class="extra-info"><span class="cost">&#8377;'+data[d].cost+'</span><i class="fa fa-star rating-icon"></i><b class="rating">3.5</b></div></div></li>';
+						element = '<li class="search-item" data-shop="'+data[d].shop_id+'" data-item="'+data[d].product_id+'"><div class="image"><div class="item_action"></div><img src="'+data[d].media_cover+'"><div class="add_to_bag"><button data-product-id="'+data[d].product_id+'" data-action="add">Add to bag</button></div></div><div class="info-outer">	<p class="item-title">'+data[d].product_title+'</p><div class="extra-info"><span class="cost">&#8377;'+data[d].cost+'</span><i class="fa fa-star rating-icon"></i><b class="rating">3.5</b></div></div></li>';
 					else
-						element = '<li class="search-item" data-shop="'+data[d].shop_id+'" data-item="'+data[d].product_id+'"><div class="image"><div class="item_action"></div><img src="'+data[d].media_cover+'"><div class="add_to_bag" style="bottom:0px"><button data-product-id="'+data[d].product_id+'" data-action="remove">Remove</button></div></div><div class="info-outer">	<p class="item-title">'+data[d].title+'</p><div class="extra-info"><span class="cost">&#8377;'+data[d].cost+'</span><i class="fa fa-star rating-icon"></i><b class="rating">3.5</b></div></div></li>';
+						element = '<li class="search-item" data-shop="'+data[d].shop_id+'" data-item="'+data[d].product_id+'"><div class="image"><div class="item_action"></div><img src="'+data[d].media_cover+'"><div class="add_to_bag" style="bottom:0px"><button data-product-id="'+data[d].product_id+'" data-action="remove">Remove</button></div></div><div class="info-outer">	<p class="item-title">'+data[d].product_title+'</p><div class="extra-info"><span class="cost">&#8377;'+data[d].cost+'</span><i class="fa fa-star rating-icon"></i><b class="rating">3.5</b></div></div></li>';
 					$("ul.search-result").append(element);
 				}
 				bind();

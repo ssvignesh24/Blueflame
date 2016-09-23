@@ -31,7 +31,7 @@
 			"title" => "required"
 		)));
 
-	Route::get("admin/product","Shop=>test");
+	
 
 	Route::post("follow_shop","Shop=>follow_shop",Validation::test(array(
 			"shop" => "required"
@@ -66,6 +66,9 @@
 		)));
 	Route::get("cart","Cart=>show_cart");
 	Route::post("cart","Cart=>cart_products");
+	Route::get("coupon","Cart=>validate_coupon",Validation::test(array(
+			"coupon" => "required|minlength:5"
+		)));
 
 	// Customer
 	Route::post("register","Rog=>customer_register",Validation::test(array(
@@ -80,5 +83,60 @@
 			"username" => "required",
 			"password" => "minlength:8"
 		)));
-	
+	Route::get("login","Rog=>login_page");
+
+	// Admin URL
+	Route::get("admin","Admin=>home");
+	Route::get("admin/products","Admin=>products:filter");
+	Route::get("admin/approvals","Admin=>approvals:filter");
+	Route::get("admin/customers","Admin=>customers:filter");
+	Route::get("admin/shops","Admin=>shops:filter");
+	Route::get("admin/dash","Admin=>dash:filter");
+	Route::get("admin/sales","Admin=>sales:filter");
+	Route::get("admin/shipping","Admin=>shipping:filter");
+	Route::get("admin/payments","Admin=>payments:filter");
+	Route::get("admin/requests","Admin=>requests:filter");
+	Route::get("admin/coupons","Admin=>coupons:filter");
+	Route::get("admin/rog","Admin=>rog:filter");
+	Route::get("admin/product","Admin=>view_product:filter",Validation::test(array(
+			"proid" => "required"
+		)));
+
+	// Admin AJAX
+	Route::post("admin/product_by_shop","Admin=>product_by_shop:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	Route::post("admin/product_by_title","Admin=>product_by_title:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	Route::post("admin/product_by_id","Admin=>product_by_id:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	Route::post("admin/approval_by_shop","Admin=>approval_by_shop:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	Route::post("admin/customer_by_name","Admin=>customer_by_name:filter",Validation::test(array(
+			"q" => "required"
+		)));
+
+	Route::post("admin/customer_by_mobile","Admin=>customer_by_mobile:filter",Validation::test(array(
+			"q" => "required"
+		)));
+
+	Route::post("admin/shop_by_title","Admin=>shop_by_title:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	Route::post("admin/shop_by_username","Admin=>shop_by_username:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	Route::post("admin/shop_by_owner","Admin=>shop_by_owner:filter",Validation::test(array(
+			"q" => "required"
+		)));
+	// Admin creation
+
+	Route::post("admin/create_coupons","Admin=>create_coupons",Validation::test(array(
+			"coupon_code" => "required",
+			"discount_price" => "int",
+			"coupon_expires" => "date"
+		)));
 ?>

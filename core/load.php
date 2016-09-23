@@ -1,6 +1,7 @@
 <?php
 	
 	include 'core/session_management.php';
+	include 'core/predis-1.0/autoload.php';
 	include 'config/db_config.php';
 	include 'core/Upload.php';
 	include 'core/Session.php';

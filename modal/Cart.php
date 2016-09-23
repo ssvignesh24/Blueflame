@@ -13,22 +13,12 @@
 		}
 
 		public static function getItems(){
-			if(Session::has("cart_id")){
-				$cart_id = Session::get("cart_id");
-				$customer_id = Session::get("id");
-				$c = Cart::find("cart_id = ? AND customer_id = ?",array($cart_id,$customer_id));
-				if($c){
-					$cart = array();
-					$c->each(function($item) use(&$cart){
-						array_push($cart, $item->product_id);
-					});
-					return json_encode($cart,JSON_FORCE_OBJECT);
-				}else
-					return "''";
+			if(Cookie::has("rog_c")){
+				return json_encode(Redis::bag_products());
 			}
-
 			return "''";
 		}
 	}
 
 ?>
+

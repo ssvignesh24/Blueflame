@@ -24,7 +24,11 @@
     font-weight: 900;
 }
 *{box-sizing : border-box;}
+a{text-decoration: none;color: inherit;}
+a:hover{text-decoration: none;}
 body{margin: 0px;font-family: 'open-sans',arial, sans-serif;}
+button:focus{outline: none;}
+button:hover{cursor: pointer;}
 .content{width: 1024px;min-height: 100px;margin: auto auto;}
 
 .rog-head{width: 100%;height: 150px;background-color: #272b35}
@@ -35,7 +39,10 @@ body{margin: 0px;font-family: 'open-sans',arial, sans-serif;}
 .breadcrumbs .action{width: 50px;height: 50px;float: right;font-size: 18pt;text-align: center;border-radius: 50%;margin: 0px 20px;margin-top: 10px;}
 .breadcrumbs .action i{position: relative;top:13px;left: -1px}
 
-
+.rog-input{border: 0;border-bottom: 2px solid #FFF;text-align: left;padding: 5px;padding-left: 8px;font-size: 13pt;background-color: transparent;}
+.rog-input:focus{outline: none;}
+.rog-button{border: 2px solid #FFF;background-color: transparent;color: #FFF;transition: background-color 0.3s, color 0.3s;}
+.rog-button:hover{cursor: pointer;color: #2d3643;background-color: #FFF;}
 .datepicker .dropdown-menu {
   background-color:#FFF !important;
 }

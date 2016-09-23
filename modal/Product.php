@@ -11,7 +11,7 @@
 		public static  function search($key,$cat = false,$shop = false,$pricemax = 100000,$pricemin = 0){
 			$values = array();
 			$key = "%".str_replace(" ", "%", $key)."%";			
-			$q = "SELECT * FROM `product` WHERE `title` like ? ";
+			$q = "SELECT * FROM `product` WHERE `product_title` like ? ";
 			array_push($values, $key);
 			if($cat){
 				$q .= " AND `product_type` like ? ";
