@@ -2,11 +2,12 @@
 
 	class Engine{
 
-    protected $post, $get;
+    protected $post, $get, $join;
 
     public function __construct(){
       $this->post = $_POST;
       $this->get = $_GET;
+      $this->join = array();
     }
 		protected static function db_connect(){
 			$db = new PDO("mysql:host=localhost", Database::USERNAME, Database::PASSWORD);
@@ -21,9 +22,15 @@
       return $sum;
     }
 
+    public static function join($data){
+      if(!is_array($data))
+        $data = array($data);
+      return new SQLResult(false, strtolower(get_called_class()), $data);
+    }
+
     protected static function handle_db_error($message){
       var_dump($message);
-      throw new Exception($message[2]);
+      throw new Exception($message);
     }
 
     public static function now(){
@@ -109,11 +116,14 @@
     }   
 
     static public function find($condition, $values){
+      if(!is_array($values))
+        $values = array($values);
       $table = strtolower(get_called_class());
       $q = "SELECT * FROM `$table` WHERE $condition";
       $result = Engine::prepare_and_execute($q,$values);
-      if(count($result) == 0)
-        return false;
+      if(count($result) == 0){
+        return new EmptySQLResult();
+      }
       $obj = new SQLResult($result, get_called_class());
       return $obj;
     }
@@ -134,14 +144,6 @@
         $q .= " id = ?";
         Engine::prepare_and_execute($q, array($condition));
       }
-    }
-
-    public static function where($condition, $data){
-
-    }
-
-    public static function join($table, $condition, $condition){
-
     }
 	}
 

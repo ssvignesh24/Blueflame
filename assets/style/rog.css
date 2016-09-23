@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os.ttf);
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-bold.ttf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-sbold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'open-sans';
+    src: url(/assets/fonts/os-ebold.ttf);
+    font-weight: 900;
+}
+*{box-sizing : border-box;}
+a{text-decoration: none;color: inherit;}
+a:hover{text-decoration: none;}
+body{margin: 0px;font-family: 'open-sans',arial, sans-serif;}
+button:focus{outline: none;}
+button:hover{cursor: pointer;}
+.content{width: 1024px;min-height: 100px;margin: auto auto;}
+
+.rog-head{width: 100%;height: 150px;background-color: #272b35}
+.rog-head .page-title{font-size: 30pt;font-weight: 100;color: #FFF;width: 100%;height: 100%;padding: 5px;}
+.rog-head .page-title span{position: relative;top : 35px;}
+
+.breadcrumbs{width: 100%;height: 80px;position: fixed;color:#FFF;z-index: 25}
+.breadcrumbs .action{width: 50px;height: 50px;float: right;font-size: 18pt;text-align: center;border-radius: 50%;margin: 0px 20px;margin-top: 10px;}
+.breadcrumbs .action i{position: relative;top:13px;left: -1px}
+
+.rog-input{border: 0;border-bottom: 2px solid #FFF;text-align: left;padding: 5px;padding-left: 8px;font-size: 13pt;background-color: transparent;}
+.rog-input:focus{outline: none;}
+.rog-button{border: 2px solid #FFF;background-color: transparent;color: #FFF;transition: background-color 0.3s, color 0.3s;}
+.rog-button:hover{cursor: pointer;color: #2d3643;background-color: #FFF;}
+.datepicker .dropdown-menu {
+  background-color:#FFF !important;
+}

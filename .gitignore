@@ -10,4 +10,8 @@ uploads
 
 bower_components
 
+/uploads 
+
+/bower_components
+
 npm-debug.log

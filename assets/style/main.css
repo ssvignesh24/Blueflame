@@ -1,0 +1,79 @@
+.section-outer{width:100%;min-height: 50px;padding: 0px 10px;float: left;}
+.section-outer .section{max-width: 1024px;margin: auto;padding: 0px 10px}
+.royal-head{background-color: #2d3643;height: 560px;position: relative;overflow: hidden;}
+.royal-head .head-shade{background-color: #343d4b;width: 900px;height: 500px;transform:rotate(-40deg);position: absolute;right: -275px;bottom: -200px;z-index: 10;}
+.royal-head .section{position: relative;z-index: 20;}
+.royal-head .rog-logo{width: 300px;height: 125px;margin: auto;background-image: url(/assets/icons/rog-white-hd.png);background-repeat: no-repeat;background-size: 80%;background-position: center;position: relative;margin-top:100px;}
+.royal-head .section .header-copy{color: #FFF;font-size: 16pt;text-align: center;margin-top: 10px;}
+.royal-head .section .head-action{width: 100%;text-align: center;height: 175px;;position: relative;z-index: 20}
+.royal-head .section .head-action .login-form{margin-top: 50px;}
+.royal-head .section .head-action .login-form input.head-input{display: inline-block;margin-left:0px;margin-right: 20px;height: 50px;width: 225px;color: #FFF;border-width: 2px;font-size: 14pt;padding:10px;}
+.royal-head .section .head-action .login-form input.head-input::input-placeholder{color: #EEE}
+.royal-head .section .head-action .login-form input.head-input::-moz-placeholder{color: #CCC}
+.royal-head .section .head-action .login-form input.head-input:-moz-placeholder{color: #CCC}
+.royal-head .section .head-action .login-form input.head-input:-ms-input-placeholder{color: #CCC}
+.royal-head .section .head-action .login-form input.head-input::-webkit-input-placeholder{color: #CCC}
+.royal-head .section .head-action .login-form .login-submit{height: 50px;width: 160px;font-size: 14pt;border-width: 2px}
+.royal-head .section .head-action .login-form .login-submit:hover{}
+.royal-head .section .head-action .signup{text-align: center;color: #FFF;text-decoration: none;font-size: 14pt;margin-top: 50px;}
+.royal-head .section .head-action .signup_link{text-decoration: none;}
+.royal-head .section .head-action .signup_link:hover{text-decoration: none;}
+#search{height: 420px;background-image: url(/assets/images/home-search.jpg);background-size: cover;background-repeat: no-repeat;background-position: center;position: relative;top:1px;}
+#search .search-copy{text-align: center;font-size: 30pt;font-weight: 200;color: #FFF;top: 100px;position: relative;margin-top: 0px;text-shadow:0px 0px 3px #000;}
+#search .search-form-holder{width: 100%;height: 60px;position: relative;top:120px;text-align: center;}
+#search .home-search{margin: auto;height: 50px;width: 450px;font-size: 16pt;margin-right: 10px;color: #FFF}
+#search .search-trigger{width: 55px;height: 50px;text-align: center;color: #FFF;font-size: 16pt;}
+#search .search-trigger:hover{color: #2d3643}
+#search .home-search::input-placeholder{color: #EEE}
+#search .home-search::-moz-placeholder{color: #CCC}
+#search .home-search:-moz-placeholder{color: #CCC}
+#search .home-search:-ms-input-placeholder{color: #CCC}
+#search .home-search::-webkit-input-placeholder{color: #CCC}
+#showcase{min-height: 400px;background-color: #f6f6f6;position: relative;top:2px;}
+#showcase .showcase-outer{width: 100%;min-height: 400px;}
+#showcase .showcase-outer .categories{width: 100%;text-align: center;min-height: 60px;float: left;}
+#showcase .showcase-outer .categories .category{display: inline-block;min-width: 150px;height:50px;font-size: 13pt;margin:0px 10px;margin-top: 20px;border: 1px solid transparent;transition : border-color 0.3s;}
+#showcase .showcase-outer .categories .category:hover{cursor: pointer;border-color: #bbb}
+#showcase .showcase-outer .categories .active{border-color : #888;}
+#showcase .showcase-outer .categories .category span{position: relative;top:10px;}
+#showcase .showcase-outer .showcase-board{float: left;width: 100%;min-height: 350px;padding: 20px 0px;margin-top: 30px;}
+#showcase .showcase-outer .showcase-board .board-item{width: 280px;padding: 5px;height: 360px;float: left;margin: 0px 25px}
+#showcase .showcase-outer .showcase-board .board-item .item-image{width: 270px;height: 270px;background-color: green}
+#showcase .showcase-outer .showcase-board .board-item .item-details{width: 270px;height: 80px;position: relative;}
+#showcase .showcase-outer .showcase-board .board-item .item-details .item-name{margin: 0px;font-size: 13pt;font-weight: 600;margin-bottom: 5px;}
+#showcase .showcase-outer .showcase-board .board-item .item-details .item-price{float: left;}
+#showcase .showcase-outer .showcase-board .board-item .item-details .rating{float: right;font-size:11pt;}
+#showcase .showcase-outer .showcase-board .board-item .item-details .rating-icon{float: right;font-size:11pt;position: relative;top:2px;margin-left: 5px;margin-right: 5px;color: #f0e138;}
+#openshop{height: 550px;background-image: url(/assets/images/openshop.jpg);background-size: cover;background-repeat: no-repeat;background-position: center;position: relative;top:3px;}
+#openshop .copy-holder{width: 100%;position: relative;top:150px;}
+#openshop .shop-copy{font-size: 34pt;font-weight: 200;color: #FFF;text-align: left;margin-bottom: 20px;margin-top: 0px;text-shadow:0px 0px 4px #000;}
+#openshop .open-trigger{color: #FFF;text-decoration: none;font-size: 16pt;text-shadow:0px 0px 4px #000}
+#openshop .copy-holder{padding-left: 20px;}
+
+#home-footer{width: 100%;height: 200px;background-color: #333;position: relative;top:4px;float: left;}
+
+@media screen and (max-width: 768px){
+	#search .search-copy{font-size: 20pt}
+	.section-outer .section{width: 100%}
+	#showcase .showcase-outer .showcase-board .board-item{margin: 0px 45px;}
+	.royal-head .section .head-action .login-form input.head-input{display: block;margin: auto;margin-bottom : 10px;width: 300px}
+	.royal-head .section .head-action .login-form .login-submit{margin-top: 30px;}
+	.royal-head .section .head-action .login-form{margin-top: 20px}
+	.royal-head .section .header-copy{font-size: 13pt;}
+	.royal-head .section .head-action .signup{margin-top: 35px;}
+	.royal-head .rog-logo{margin-top: 65px;}
+}
+@media screen and (max-width: 480px){
+	.section-outer .section{width: 100%}
+	.royal-head .section .head-action .login-form input.head-input{width: 100%}
+	#search .search-trigger{margin-top: 30px;width: 100px;}
+	#search .home-search{width: 100%}
+	#showcase .showcase-outer .showcase-board .board-item{margin: 0px 10%;}
+	#openshop .shop-copy{font-size: 22pt}
+	#openshop .copy-holder{top:200px;}
+}
+@media screen and (max-width: 320px){
+	#openshop .shop-copy{font-size: 20pt}
+	#showcase .showcase-outer .showcase-board .board-item{margin: 0px 4%}
+
+}

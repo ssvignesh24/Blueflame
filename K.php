@@ -2,28 +2,34 @@
 	
 	date_default_timezone_set("Asia/Kolkata");
 
-	session_start();
-
 	include 'core/load.php';
+	
 	$session = new Session();
-	if(explode("/", $_GET['route'])[0] == "admin"){
+	if(false){//explode("/", $_GET['route'])[0] == "admin"
 		include 'core/auth.php';
 		$a = new Admin();
 		$a->handle($_GET['route']);
 
 	}else{
 
-		if(count(explode(".", $_SERVER['HTTP_HOST'])) >= 3)
-			$action = Route::route_of("*.".$_GET['route'], $_SERVER['REQUEST_METHOD']);
-		else
-			$action = Route::route_of($_GET['route'], $_SERVER['REQUEST_METHOD']);
-		// Initiate controller pbject
-		$controller = new $action['controller'];
+		if(filter_input(INPUT_GET, 'route') == null) die();
 		
+		if(count(explode(".", $_SERVER['HTTP_HOST'])) >= 3)
+			$action = Route::route_of("*.".filter_input(INPUT_GET, 'route'), $_SERVER['REQUEST_METHOD']);
+		else
+			$action = Route::route_of(filter_input(INPUT_GET, 'route'), $_SERVER['REQUEST_METHOD']);
+
+		if($action['controller'] == "" || $action['action'] == "") die();
+
+		// Initiate controller pbject
+		$action_controller = $action['controller'];
+
+		$controller = $action_controller::newInstance();
+
 		// Check for filter
 		if($action['filter'] == true){
 			if(!$controller->__filter_request())
-				die("Request did not pass filter");
+				$controller->filter_failed();
 		}
 
 		// Check for input errors
@@ -45,7 +51,5 @@
 			throw new Exception("Action not found : ".$action['action']);
 		
 	}
-
-	
 
 ?> 
